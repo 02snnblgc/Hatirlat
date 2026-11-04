@@ -1,4 +1,4 @@
-package com.hatirlat.app.utils;
+package com.hatirlat.app;
 
 import android.content.Context;
 import com.google.gson.Gson;
