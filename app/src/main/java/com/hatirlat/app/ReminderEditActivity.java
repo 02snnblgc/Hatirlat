@@ -1,4 +1,4 @@
-package com.hatirlat.app.ui;
+package com.hatirlat.app;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
