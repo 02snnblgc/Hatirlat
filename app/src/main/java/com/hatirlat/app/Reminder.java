@@ -1,4 +1,4 @@
-package com.hatirlat.app.data;
+package com.hatirlat.app;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
