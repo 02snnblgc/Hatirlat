@@ -1,4 +1,4 @@
-package com.hatirlat.app.data;
+package com.hatirlat.app;
 
 import android.content.Context;
 import androidx.room.Database;
