@@ -1,4 +1,4 @@
-package com.hatirlat.app.data;
+package com.hatirlat.app;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
