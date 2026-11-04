@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hatırlat</string>
+    <string-array name="repeat_options">
+        <item>Tekrarsız</item>
+        <item>Her Gün</item>
+        <item>Her Ayın 5\'i</item>
+        <item>Her Yıl</item>
+    </string-array>
+</resources>

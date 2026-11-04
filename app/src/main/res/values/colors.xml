@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Pastel Yeşil (Adaçayı - Varsayılan) -->
+    <color name="sage_primary">#8A9A86</color>
+    <color name="sage_background">#F4F6F4</color>
+    
+    <!-- Pastel Gül -->
+    <color name="rose_primary">#DDA7A5</color>
+    <color name="rose_background">#FAF4F4</color>
+
+    <!-- Pastel Mavi -->
+    <color name="blue_primary">#9BB7D4</color>
+    <color name="blue_background">#F0F4F8</color>
+
+    <!-- Pastel Şeftali -->
+    <color name="peach_primary">#E0B589</color>
+    <color name="peach_background">#FAF5F0</color>
+
+    <!-- Pastel Lavanta -->
+    <color name="lavender_primary">#B3A5CD</color>
+    <color name="lavender_background">#F6F4FA</color>
+</resources>
