@@ -1,24 +1,19 @@
 package com.hatirlat.app;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.hatirlat.app.R;
-import com.hatirlat.app.data.Reminder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHolder> {
+public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ReminderViewHolder> {
 
     private final List<Reminder> reminderList;
     private final OnReminderClickListener listener;
@@ -35,24 +30,31 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHo
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ReminderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_reminder, parent, false);
-        return new ViewHolder(view);
+        return new ReminderViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ReminderViewHolder holder, int position) {
         Reminder reminder = reminderList.get(position);
         holder.tvTitle.setText(reminder.title);
-        holder.tvCategory.setText(reminder.category);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+        holder.tvDescription.setText(reminder.description);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         holder.tvDate.setText(sdf.format(new Date(reminder.targetDateTime)));
 
-        holder.cbCompleted.setChecked(reminder.isCompleted);
+        // Listener çakışmasını önlemek için önce listener'ı null yapıyoruz
+        holder.cbComplete.setOnCheckedChangeListener(null);
+        holder.cbComplete.setChecked(reminder.isCompleted);
 
-        holder.itemView.setOnClickListener(v -> listener.onReminderClick(reminder));
-        holder.cbCompleted.setOnClickListener(v -> listener.onCompleteClick(reminder));
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) listener.onReminderClick(reminder);
+        });
+
+        holder.cbComplete.setOnClickListener(v -> {
+            if (listener != null) listener.onCompleteClick(reminder);
+        });
     }
 
     @Override
@@ -60,16 +62,16 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.ViewHo
         return reminderList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvCategory, tvDate;
-        CheckBox cbCompleted;
+    public static class ReminderViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTitle, tvDescription, tvDate;
+        CheckBox cbComplete;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ReminderViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvItemTitle);
-            tvCategory = itemView.findViewById(R.id.tvItemCategory);
-            tvDate = itemView.findViewById(R.id.tvItemDate);
-            cbCompleted = itemView.findViewById(R.id.cbItemCompleted);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvDate = itemView.findViewById(R.id.tvDate);
+            cbComplete = itemView.findViewById(R.id.cbComplete);
         }
     }
 }
