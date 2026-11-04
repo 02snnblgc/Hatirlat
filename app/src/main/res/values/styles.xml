@@ -1,6 +1,0 @@
-<resources>
-    <style name="Theme.Hatirlat.Sage" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/sage_primary</item>
-        <item name="android:windowBackground">@color/sage_background</item>
-    </style>
-</resources>
