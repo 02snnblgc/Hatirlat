@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hatirlat.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Kesin Zamanlı Alarm ve Bildirim İzinleri -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
@@ -21,7 +20,7 @@
         android:theme="@style/Theme.Hatirlat.Sage">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,21 +28,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.ReminderEditActivity" />
+        <activity android:name=".ReminderEditActivity" />
         
         <activity
-            android:name=".ui.AlarmActivity"
+            android:name=".AlarmActivity"
             android:showOnLockScreen="true"
             android:turnScreenOn="true"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance" />
 
         <receiver
-            android:name=".receiver.AlarmReceiver"
+            android:name=".AlarmReceiver"
             android:exported="false" />
 
         <receiver
-            android:name=".receiver.BootReceiver"
+            android:name=".BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -53,7 +52,7 @@
         </receiver>
 
         <service
-            android:name=".service.AlarmService"
+            android:name=".AlarmService"
             android:foregroundServiceType="mediaPlayback"
             android:exported="false" />
 
