@@ -28,6 +28,13 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
         this.listener = listener;
     }
 
+    // Listeyi dinamik olarak güncelleyip arayüzü yenileyen metot
+    public void updateList(List<Reminder> newReminders) {
+        reminderList.clear();
+        reminderList.addAll(newReminders);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ReminderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,7 +51,6 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
         holder.tvDate.setText(sdf.format(new Date(reminder.targetDateTime)));
 
-        // Listener çakışmasını önlemek için önce listener'ı null yapıyoruz
         holder.cbComplete.setOnCheckedChangeListener(null);
         holder.cbComplete.setChecked(reminder.isCompleted);
 
