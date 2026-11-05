@@ -28,7 +28,6 @@ public class ReminderAdapter extends RecyclerView.Adapter<ReminderAdapter.Remind
         this.listener = listener;
     }
 
-    // Listeyi dinamik olarak güncelleyip arayüzü yenileyen metot
     public void updateList(List<Reminder> newReminders) {
         reminderList.clear();
         reminderList.addAll(newReminders);
