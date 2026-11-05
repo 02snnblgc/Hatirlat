@@ -24,4 +24,7 @@ public interface ReminderDao {
 
     @Query("SELECT * FROM reminders WHERE id = :id")
     Reminder getReminderById(long id);
+
+    @Query("SELECT * FROM reminders WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%' ORDER BY targetDateTime ASC")
+    List<Reminder> searchReminders(String query);
 }
