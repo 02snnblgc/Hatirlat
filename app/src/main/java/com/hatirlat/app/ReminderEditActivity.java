@@ -1,7 +1,5 @@
 package com.hatirlat.app;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -9,7 +7,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.Calendar;
 
 public class ReminderEditActivity extends AppCompatActivity {
 
@@ -45,7 +42,7 @@ public class ReminderEditActivity extends AppCompatActivity {
             loadReminderData();
         } else {
             setTitle("Yeni Hatırlatma");
-            selectedDateTime = System.currentTimeMillis() + 60000; // Varsayılan 1 dakika sonra
+            selectedDateTime = System.currentTimeMillis() + 60000;
         }
 
         btnSave.setOnClickListener(v -> saveReminder());
@@ -99,7 +96,6 @@ public class ReminderEditActivity extends AppCompatActivity {
                 reminder.id = newId;
             }
 
-            // Alarmı kur
             if (!reminder.isCompleted && reminder.targetDateTime > System.currentTimeMillis()) {
                 AlarmScheduler.scheduleAlarm(this, reminder);
             }
