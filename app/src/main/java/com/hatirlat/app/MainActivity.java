@@ -2,6 +2,8 @@ package com.hatirlat.app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private AppDatabase db;
     private SearchView searchView;
     private FloatingActionButton fabAdd;
+    private Button btnExportJson, btnImportJson;
     private final List<Reminder> reminderList = new ArrayList<>();
 
     @Override
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         searchView = findViewById(R.id.searchView);
         fabAdd = findViewById(R.id.fabAdd);
+        btnExportJson = findViewById(R.id.btnExportJson);
+        btnImportJson = findViewById(R.id.btnImportJson);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -62,6 +67,27 @@ public class MainActivity extends AppCompatActivity {
         fabAdd.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, ReminderEditActivity.class);
             startActivity(intent);
+        });
+
+        // JSON Yedekleme Butonu
+        btnExportJson.setOnClickListener(v -> {
+            Executors.newSingleThreadExecutor().execute(() -> {
+                List<Reminder> allReminders = db.reminderDao().getAllReminders();
+                String json = JsonBackupUtil.exportToJson(this, allReminders);
+                runOnUiThread(() -> {
+                    if (json != null && !json.isEmpty()) {
+                        // Basit bilgilendirme veya panoya kopyalama / dosya kaydetme
+                        Toast.WithString(this, "Yedek başarıyla oluşturuldu!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, "Yedeklenecek veri bulunamadı", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            });
+        });
+
+        // JSON Geri Yükleme Butonu (Örnek tetikleyici)
+        btnImportJson.setOnClickListener(v -> {
+            Toast.makeText(this, "Geri yükleme için örnek JSON verisi bekleniyor", Toast.LENGTH_SHORT).show();
         });
 
         if (searchView != null) {
