@@ -10,11 +10,11 @@ public class AlarmScheduler {
     public static void scheduleAlarm(Context context, Reminder reminder) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
-        intent.putExtra("REMINDER_ID", reminder.getId());
+        intent.putExtra("REMINDER_ID", reminder.id);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 context,
-                (int) reminder.getId(),
+                (int) reminder.id,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
@@ -41,7 +41,7 @@ public class AlarmScheduler {
         Intent intent = new Intent(context, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
                 context,
-                (int) reminder.getId(),
+                (int) reminder.id,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
         );
