@@ -76,8 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 String json = JsonBackupUtil.exportToJson(this, allReminders);
                 runOnUiThread(() -> {
                     if (json != null && !json.isEmpty()) {
-                        // Basit bilgilendirme veya panoya kopyalama / dosya kaydetme
-                        Toast.WithString(this, "Yedek başarıyla oluşturuldu!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(this, "Yedek başarıyla oluşturuldu!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(this, "Yedeklenecek veri bulunamadı", Toast.LENGTH_SHORT).show();
                     }
